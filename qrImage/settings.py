@@ -30,6 +30,7 @@ ALLOWED_HOSTS = [
     'localhost',               # Allow local development
     '127.0.0.1',               # Allow localhost
     '2994-2405-201-6816-121a-5445-cda5-ec42-9dd9.ngrok-free.app',  # Your Ngrok URL
+    'qr-wall.onrender.com',
 ]
 
 
