@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 # Global dictionary to store which segments are revealed
-revealed_segments = {f'segment_{i}': False for i in range(1, 25)}
+revealed_segments = {f'segment_{i}': False for i in range(1, 26)}
 revealed_segments['segment_0'] = False  # Middle segment (QR for the whole image)
 
 # List of specific segments required for segment_0 to be revealed
@@ -17,7 +17,7 @@ def large_screen(request):
 
 def reveal(request, segment):
     """Handle reveal logic for a particular segment."""
-    if segment in revealed_segments:
+    if segment in revealed_segments or segment == 'segment_25':  # Allow 'segment_25' without being in the dictionary
         if request.method == 'POST':  # Handle reveal button click
             if segment == 'segment_0':
                 # Check if the specific segments are revealed
@@ -28,7 +28,11 @@ def reveal(request, segment):
                 else:
                     return render(request, 'error.html')
             
-            revealed_segments[segment] = True  # Mark the segment as revealed
+            elif segment == 'segment_25':
+                # If segment_25 is clicked, just redirect to the success page without revealing anything
+                return redirect('success_page')
+
+            revealed_segments[segment] = True  # Mark the segment as revealed (for all other segments)
             return redirect('success_page')  # Redirect back to the main page
     else:
         return HttpResponse("Invalid segment", status=404)
