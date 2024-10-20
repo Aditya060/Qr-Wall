@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Grid</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f2d3db;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columns for 900px width */
+            grid-template-rows: repeat(6, 1fr); /* 6 rows for 1350px height */
+            gap: 0px; /* No gap between grid items */
+            width: 900px; /* Total width of the grid */
+            height: 1350px; /* Total height of the grid */
+        }
+        .qr-code {
+            width: 225px; /* Width of each QR code */
+            height: 225px; /* Height of each QR code */
+            padding: 0;
+            margin: 0;
+        }
+        .full-image-qr {
+            grid-column: 2 / span 2; /* Start at column 2 and span 2 columns */
+            grid-row: 3 / span 2; /* Start at row 3 and span 2 rows */
+            width: 450px; /* Size of the full image QR code */
+            height: 450px; /* Size of the full image QR code */
+        }
+        .full-image{
+            grid-column: 1 / span 4; /* Cover all 4 columns */
+            grid-row: 1 / span 6; /* Cover all 6 rows */
+            width: 900px; /* Total width */
+            height: 1350px; /* Total height */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+    <script>
+        // Function to reload the page every 5 seconds
+        setTimeout(function(){
+            location.reload();
+        }, 5000);
+    </script>
+</head>
+<body>
+    <div class="grid-container">
+        <!-- Full image QR code occupying the middle section -->
+        
+
+        {% if segments.segment_0 %}
+            <img src="/static/images/Final_Image.psd" alt="Full Image" class="full-image">
+        {% else %}
+        <img src="/static/images/qr_codes/qr_code_segment_0.png" 
+        alt="Full Image QR Code" class="qr-code full-image-qr">
+        {% endif %}
+
+        {% if segments.segment_1 %}
+            <img src="/static/images/segments/segment_1.jpg" alt="Segment 1" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_1.png" alt="QR Segment 1" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_2 %}
+            <img src="/static/images/segments/segment_2.jpg" alt="Segment 2" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_2.png" alt="QR Segment 2" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_3 %}
+            <img src="/static/images/segments/segment_3.jpg" alt="Segment 3" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_3.png" alt="QR Segment 3" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_4 %}
+            <img src="/static/images/segments/segment_4.jpg" alt="Segment 4" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_4.png" alt="QR Segment 4" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_5 %}
+            <img src="/static/images/segments/segment_5.jpg" alt="Segment 5" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_5.png" alt="QR Segment 5" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_6 %}
+            <img src="/static/images/segments/segment_6.jpg" alt="Segment 6" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_6.png" alt="QR Segment 6" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_7 %}
+            <img src="/static/images/segments/segment_7.jpg" alt="Segment 7" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_7.png" alt="QR Segment 7" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_8 %}
+            <img src="/static/images/segments/segment_8.jpg" alt="Segment 8" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_8.png" alt="QR Segment 8" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_9 %}
+            <img src="/static/images/segments/segment_9.jpg" alt="Segment 9" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_9.png" alt="QR Segment 9" class="qr-code">
+        {% endif %}
+
+        <!-- {% if segments.segment_10 %}
+            <img src="/static/images/segments/segment_10.jpg" alt="Segment 10" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_10.png" alt="QR Segment 10" class="qr-code">
+        {% endif %} -->
+
+        <!-- {% if segments.segment_11 %}
+            <img src="/static/images/segments/segment_11.jpg" alt="Segment 11" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_11.png" alt="QR Segment 11" class="qr-code">
+        {% endif %} -->
+
+        {% if segments.segment_12 %}
+            <img src="/static/images/segments/segment_12.jpg" alt="Segment 12" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_12.png" alt="QR Segment 12" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_13 %}
+            <img src="/static/images/segments/segment_13.jpg" alt="Segment 13" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_13.png" alt="QR Segment 13" class="qr-code">
+        {% endif %}
+
+        <!-- {% if segments.segment_14 %}
+            <img src="/static/images/segments/segment_14.jpg" alt="Segment 14" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_14.png" alt="QR Segment 14" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_15 %}
+            <img src="/static/images/segments/segment_15.jpg" alt="Segment 15" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_15.png" alt="QR Segment 15" class="qr-code">
+        {% endif %} -->
+
+        {% if segments.segment_16 %}
+            <img src="/static/images/segments/segment_16.jpg" alt="Segment 16" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_16.png" alt="QR Segment 16" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_17 %}
+            <img src="/static/images/segments/segment_17.jpg" alt="Segment 17" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_17.png" alt="QR Segment 17" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_18 %}
+            <img src="/static/images/segments/segment_18.jpg" alt="Segment 18" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_18.png" alt="QR Segment 18" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_19 %}
+            <img src="/static/images/segments/segment_19.jpg" alt="Segment 19" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_19.png" alt="QR Segment 19" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_20 %}
+            <img src="/static/images/segments/segment_20.jpg" alt="Segment 20" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_20.png" alt="QR Segment 20" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_21 %}
+            <img src="/static/images/segments/segment_21.jpg" alt="Segment 21" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_21.png" alt="QR Segment 21" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_22 %}
+            <img src="/static/images/segments/segment_22.jpg" alt="Segment 22" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_22.png" alt="QR Segment 22" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_23 %}
+            <img src="/static/images/segments/segment_23.jpg" alt="Segment 23" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_23.png" alt="QR Segment 23" class="qr-code">
+        {% endif %}
+
+        {% if segments.segment_24 %}
+            <img src="/static/images/segments/segment_24.jpg" alt="Segment 24" class="qr-code">
+        {% else %}
+            <img src="/static/images/qr_codes/qr_code_segment_24.png" alt="QR Segment 24" class="qr-code">
+        {% endif %}
+
+    </div>
+</body>
+</html>
