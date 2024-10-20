@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8e1f1;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #4b0082;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #db78ef;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .revealed {
+            background-color: #b2ffb2; /* Light green for revealed segments */
+        }
+    </style>
+</head>
+<body>
+    <h1>QR Code Status</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>QR Code Number</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for segment, revealed in segments.items %}
+                <tr>
+                    <td>{{ segment }}</td>
+                    <td class="{% if revealed %}revealed{% endif %}">{{ revealed|yesno:"Revealed,Not Revealed" }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{% url 'large_screen' %}">Back to Main Screen</a>
+</body>
+</html>
