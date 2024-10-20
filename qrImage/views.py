@@ -38,3 +38,10 @@ def reveal(request, segment):
 def success_page(request):
     """Render the success page with the image."""
     return render(request, 'success.html')
+
+def qr_code_status(request):
+    """Render a page displaying the status of all QR codes."""
+    context = {
+        'segments': revealed_segments,  # Pass the revealed_segments dictionary to the template
+    }
+    return render(request, 'qr_code_status.html', context)
