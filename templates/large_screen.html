@@ -10,6 +10,7 @@
             padding: 0;
             background-color: #f2d3db;
         }
+
         .grid-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr); /* 4 columns for 900px width */
@@ -17,20 +18,24 @@
             gap: 0px; /* No gap between grid items */
             width: 900px; /* Total width of the grid */
             height: 1350px; /* Total height of the grid */
+            transition: transform 0.3s ease; /* Smooth transitions for move/zoom */
         }
+
         .qr-code {
             width: 225px; /* Width of each QR code */
             height: 225px; /* Height of each QR code */
             padding: 0;
             margin: 0;
         }
+
         .full-image-qr {
             grid-column: 2 / span 2; /* Start at column 2 and span 2 columns */
             grid-row: 3 / span 2; /* Start at row 3 and span 2 rows */
             width: 450px; /* Size of the full image QR code */
             height: 450px; /* Size of the full image QR code */
         }
-        .full-image{
+
+        .full-image {
             grid-column: 1 / span 4; /* Cover all 4 columns */
             grid-row: 1 / span 6; /* Cover all 6 rows */
             width: 900px; /* Total width */
@@ -39,24 +44,84 @@
             top: 0;
             left: 0;
         }
+
+        /* Style the controller for move/zoom buttons */
+        .controller {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .controller button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .controller button:hover {
+            background-color: #0056b3;
+        }
+
     </style>
     <script>
+        // Variables for translation and scaling
+        let translateX = 0;
+        let translateY = 0;
+        let scale = 1;
+
         // Function to reload the page every 5 seconds
-        setTimeout(function(){
+        setTimeout(function () {
             location.reload();
         }, 5000);
+
+        // Move Left function
+        function moveLeft() {
+            translateX -= 50; // Move left by 50px
+            updateTransform();
+        }
+
+        // Move Right function
+        function moveRight() {
+            translateX += 50; // Move right by 50px
+            updateTransform();
+        }
+
+        // Zoom In function
+        function zoomIn() {
+            scale += 0.1; // Zoom in by 10%
+            updateTransform();
+        }
+
+        // Zoom Out function
+        function zoomOut() {
+            if (scale > 0.2) { // Prevent excessive zoom out
+                scale -= 0.1; // Zoom out by 10%
+                updateTransform();
+            }
+        }
+
+        // Apply CSS transform to grid-container
+        function updateTransform() {
+            const grid = document.querySelector('.grid-container');
+            grid.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+        }
     </script>
 </head>
 <body>
+    <!-- QR Code Grid Container -->
     <div class="grid-container">
         <!-- Full image QR code occupying the middle section -->
-        
-
         {% if segments.segment_0 %}
             <img src="/static/images/Final_Image.jpg" alt="Full Image" class="full-image">
         {% else %}
-        <img src="/static/images/qr_codes/qr_code_segment_0.png" 
-        alt="Full Image QR Code" class="qr-code full-image-qr">
+            <img src="/static/images/qr_codes/qr_code_segment_0.png" alt="Full Image QR Code" class="qr-code full-image-qr">
         {% endif %}
 
         {% if segments.segment_1 %}
@@ -113,18 +178,6 @@
             <img src="/static/images/qr_codes/qr_code_segment_9.png" alt="QR Segment 9" class="qr-code">
         {% endif %}
 
-        <!-- {% if segments.segment_10 %}
-            <img src="/static/images/segments/segment_10.jpg" alt="Segment 10" class="qr-code">
-        {% else %}
-            <img src="/static/images/qr_codes/qr_code_segment_10.png" alt="QR Segment 10" class="qr-code">
-        {% endif %} -->
-
-        <!-- {% if segments.segment_11 %}
-            <img src="/static/images/segments/segment_11.jpg" alt="Segment 11" class="qr-code">
-        {% else %}
-            <img src="/static/images/qr_codes/qr_code_segment_11.png" alt="QR Segment 11" class="qr-code">
-        {% endif %} -->
-
         {% if segments.segment_12 %}
             <img src="/static/images/segments/segment_12.jpg" alt="Segment 12" class="qr-code">
         {% else %}
@@ -136,18 +189,6 @@
         {% else %}
             <img src="/static/images/qr_codes/qr_code_segment_13.png" alt="QR Segment 13" class="qr-code">
         {% endif %}
-
-        <!-- {% if segments.segment_14 %}
-            <img src="/static/images/segments/segment_14.jpg" alt="Segment 14" class="qr-code">
-        {% else %}
-            <img src="/static/images/qr_codes/qr_code_segment_14.png" alt="QR Segment 14" class="qr-code">
-        {% endif %}
-
-        {% if segments.segment_15 %}
-            <img src="/static/images/segments/segment_15.jpg" alt="Segment 15" class="qr-code">
-        {% else %}
-            <img src="/static/images/qr_codes/qr_code_segment_15.png" alt="QR Segment 15" class="qr-code">
-        {% endif %} -->
 
         {% if segments.segment_16 %}
             <img src="/static/images/segments/segment_16.jpg" alt="Segment 16" class="qr-code">
@@ -202,7 +243,15 @@
         {% else %}
             <img src="/static/images/qr_codes/qr_code_segment_24.png" alt="QR Segment 24" class="qr-code">
         {% endif %}
-
     </div>
+
+    <!-- Controller for Moving and Zooming -->
+    <div class="controller">
+        <button onclick="moveLeft()">Move Left</button>
+        <button onclick="moveRight()">Move Right</button>
+        <button onclick="zoomIn()">Zoom In</button>
+        <button onclick="zoomOut()">Zoom Out</button>
+    </div>
+
 </body>
 </html>
