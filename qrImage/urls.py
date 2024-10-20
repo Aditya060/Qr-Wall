@@ -23,7 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.large_screen, name='large_screen'),
     path('reveal/<str:segment>/', views.reveal, name='reveal'),
-    path('success/', views.success_page, name='success_page'),  
+    path('success/', views.success_page, name='success_page'),
+    path('qr_code_status/', views.qr_code_status, name='qr_code_status'),
 
    
 
