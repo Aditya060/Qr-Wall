@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-p)cbr)1v&!wapokh_pt@w%3pzm9b3t@an%(x*yeus*5h3vx*x3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'localhost',               # Allow local development
@@ -122,11 +122,17 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
 
-STATIC_URL = 'static/'
+# Directly point to the static directory in qrImage
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'qrImage/static'),
+    os.path.join(BASE_DIR, 'qrImage/static'),  # This is correct based on your tree
 ]
+
+# Set a STATIC_ROOT for collected files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Or any preferred directory for collected files
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
