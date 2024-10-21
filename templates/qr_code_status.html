@@ -50,6 +50,12 @@
         </tbody>
     </table>
     <br>
+   
+    <form action="{% url 'reset_revealed_segments' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Reset Revealed Segments</button>
+    </form>
+    <br>
     <a href="{% url 'large_screen' %}">Back to Main Screen</a>
 </body>
 </html>
