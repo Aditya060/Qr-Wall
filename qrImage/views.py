@@ -49,3 +49,9 @@ def qr_code_status(request):
         'segments': revealed_segments,  # Pass the revealed_segments dictionary to the template
     }
     return render(request, 'qr_code_status.html', context)
+    
+def reset_revealed_segments(request):
+    """Reset all revealed segments to False."""
+    for key in revealed_segments.keys():
+        revealed_segments[key] = False
+    return redirect('qr_code_status')  # Redirect back to the QR Code Status page
