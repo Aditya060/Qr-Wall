@@ -25,6 +25,7 @@ urlpatterns = [
     path('reveal/<str:segment>/', views.reveal, name='reveal'),
     path('success/', views.success_page, name='success_page'),
     path('qr_code_status/', views.qr_code_status, name='qr_code_status'),
+    path('reset/', views.reset_revealed_segments, name='reset_revealed_segments'), 
 
    
 
